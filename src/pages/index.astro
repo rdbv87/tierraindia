@@ -1,0 +1,322 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import CuppingCard from '../components/CuppingCard.astro';
+import AwardBadge from '../components/AwardBadge.astro';
+import EventTimeline from '../components/EventTimeline.astro';
+import Icon from '../components/Icon.astro';
+import { getCollection } from 'astro:content';
+
+const cafes = await getCollection('cafes');
+const premios = await getCollection('premios');
+const eventos = await getCollection('eventos');
+---
+
+<BaseLayout>
+  <!-- 1. Hero Section Editorial -->
+  <HeroSection
+    titulo="El café de altura que nace del <span class='text-[#dfab3e] italic'>liderazgo de mujeres</span>"
+    subtitulo="Productoras y catadoras apasionadas en Teupasenti, El Paraíso. Cuidamos cada etapa desde la finca a 1,500 msnm hasta el tueste artesanal de alta especialidad."
+    badge="Teupasenti, El Paraíso · Honduras"
+    ctaPrimario={{ texto: "Catálogo & Perfiles de Taza", url: "#cataduria" }}
+    ctaSecundario={{ texto: "Nuestra Historia & Origen", url: "#origen" }}
+  />
+
+  <!-- 2. Historia, Liderazgo & Origen Humano -->
+  <section id="origen" class="py-24 sm:py-32 bg-[#fbf8f5] text-[#2b1810] relative overflow-hidden">
+    <!-- Subtle Background Element -->
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-[#c99326]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        
+        <!-- Image Grid / Visual Composition with Scroll Reveal -->
+        <div class="space-y-4 reveal-left">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-[#2b1810]/10 h-[380px] sm:h-[460px] group">
+            <img
+              src="/images/eventos-personas-01.jpg"
+              alt="Edna y equipo de catadoras de Tierra India realizando extracción de café"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#2b1810]/85 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6 text-white transform transition-transform duration-500 group-hover:-translate-y-1">
+              <span class="px-3 py-1 rounded-full bg-[#c99326] text-[#2b1810] text-xs font-bold uppercase tracking-wider mb-2 inline-block shadow-md">
+                Liderazgo de Mujeres
+              </span>
+              <p class="font-serif text-xl font-bold">Edna & Catadoras Profesionales</p>
+              <p class="text-xs text-[#f7f1eb]/85 mt-1">4 años de perfeccionamiento y tostaduría física en Teupasenti</p>
+            </div>
+          </div>
+
+          <!-- Secondary Image Grid -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl overflow-hidden h-44 shadow-md border border-[#2b1810]/10 group">
+              <img
+                src="/images/proceso-01.jpg"
+                alt="Proceso de secado y selección de café en Teupasenti"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+            </div>
+            <div class="rounded-2xl overflow-hidden h-44 shadow-md border border-[#2b1810]/10 group">
+              <img
+                src="/images/foto-comercial-02.jpg"
+                alt="Granos de café seleccionados a mano por Tierra India"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Story & Impact Content with Scroll Reveal -->
+        <div class="space-y-6 reveal-right">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#438265]/10 text-[#2d5a46] text-xs font-semibold uppercase tracking-wider">
+            <Icon name="leaf" class="w-3.5 h-3.5 text-[#2d5a46]" />
+            <span>Origen Humano & Sostenibilidad</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#2b1810] leading-tight">
+            Pasión por la tierra, rigor en la catación y <span class="text-[#c99326]">compromiso con nuestra gente</span>.
+          </h2>
+
+          <p class="text-[#44261c]/85 text-base sm:text-lg leading-relaxed">
+            <strong>Tostaduría Tierra India S.A.</strong> es una empresa impulsada por Edna y su hermana, ambas catadoras educadas que han transformado el panorama cafetalero de Teupasenti, El Paraíso. Edna es una productora referente que ha representado al sector cafetalero en el extranjero y participado activamente en la formulación de políticas y leyes agrícolas en Honduras.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="flex items-start gap-3.5 p-3 rounded-2xl transition-colors hover:bg-white/60">
+              <div class="w-8 h-8 rounded-full bg-[#dfab3e]/20 text-[#936712] flex items-center justify-center shrink-0 mt-0.5">
+                <Icon name="check" class="w-4 h-4 text-[#936712]" />
+              </div>
+              <div>
+                <h4 class="font-bold text-[#2b1810] text-base">Servicios Integrales al Productor</h4>
+                <p class="text-sm text-[#44261c]/80 mt-0.5">Brindamos catación, trillado, tueste artesanal, molienda y empacado a productores locales, asegurando un precio justo y trazabilidad.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5 p-3 rounded-2xl transition-colors hover:bg-white/60">
+              <div class="w-8 h-8 rounded-full bg-[#dfab3e]/20 text-[#936712] flex items-center justify-center shrink-0 mt-0.5">
+                <Icon name="check" class="w-4 h-4 text-[#936712]" />
+              </div>
+              <div>
+                <h4 class="font-bold text-[#2b1810] text-base">Empoderamiento Femenino Activo</h4>
+                <p class="text-sm text-[#44261c]/80 mt-0.5">Acompañamiento y formación continua a mujeres caficultoras para que lideren la gestión de calidad de sus propios cultivos.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5 p-3 rounded-2xl transition-colors hover:bg-white/60">
+              <div class="w-8 h-8 rounded-full bg-[#dfab3e]/20 text-[#936712] flex items-center justify-center shrink-0 mt-0.5">
+                <Icon name="check" class="w-4 h-4 text-[#936712]" />
+              </div>
+              <div>
+                <h4 class="font-bold text-[#2b1810] text-base">Transformación Digital & Normativa EUDR</h4>
+                <p class="text-sm text-[#44261c]/80 mt-0.5">Levantamiento de procesos técnicos y preparación para la exportación hacia Europa cumpliendo con el reglamento de Cero Deforestación.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <a
+              href="#contacto"
+              class="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-[#2b1810] hover:bg-[#44261c] text-white font-semibold text-sm transition-all duration-300 shadow-xl hover:-translate-y-1 group"
+            >
+              <span>Conoce Nuestro Plan de Exportación</span>
+              <Icon name="arrow-right" class="w-4 h-4 text-[#dfab3e] group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. Sección de Cataduría y Fichas Técnicas -->
+  <section id="cataduria" class="py-24 sm:py-32 bg-[#2b1810] text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#dfab3e_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header with Reveal -->
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16 reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dfab3e]/15 border border-[#dfab3e]/30 text-[#dfab3e] text-xs font-semibold uppercase tracking-wider">
+          <Icon name="cup" class="w-3.5 h-3.5 text-[#dfab3e]" />
+          <span>Cataduría Técnica SCA & IHCAFE</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-serif font-bold tracking-tight">
+          Nuestros Cafés de <span class="text-[#dfab3e]">Especialidad</span>
+        </h2>
+        <p class="text-[#f7f1eb]/80 text-base sm:text-lg font-light leading-relaxed">
+          Cada lote es rigurosamente evaluado por nuestras catadoras certificadas. Fichas técnicas transparentes con altitud verificada, notas organolépticas y puntaje de taza.
+        </p>
+      </div>
+
+      <!-- Coffee Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {cafes.map((cafe, i) => (
+          <div class={`reveal delay-${(i + 1) * 100}`}>
+            <CuppingCard cafe={cafe} />
+          </div>
+        ))}
+
+        <!-- Card de Servicios de Tostaduría / Maquila -->
+        <div class="reveal delay-200 bg-gradient-to-br from-[#44261c] to-[#2b1810] rounded-3xl p-8 border border-[#dfab3e]/30 flex flex-col justify-between shadow-2xl hover:border-[#dfab3e]/60 transition-all duration-300 hover:-translate-y-1">
+          <div class="space-y-4">
+            <span class="px-3.5 py-1 rounded-full bg-[#438265]/20 text-[#438265] text-xs font-bold uppercase tracking-wide inline-block">
+              Servicios al Productor
+            </span>
+            <h3 class="text-2xl font-serif font-bold text-white">
+              Tostaduría & Control de Calidad
+            </h3>
+            <p class="text-sm text-[#f7f1eb]/80 leading-relaxed">
+              ¿Eres productor o tostador? Ofrecemos servicios de cataduría profesional, curvas de tueste a medida, trillado, molienda y empacado con atmósfera controlada.
+            </p>
+            <ul class="text-xs text-[#dfab3e] space-y-2 font-medium">
+              <li class="flex items-center gap-1.5">
+                <Icon name="check" class="w-3.5 h-3.5 text-[#dfab3e]" />
+                <span>Curvas de tueste personalizadas</span>
+              </li>
+              <li class="flex items-center gap-1.5">
+                <Icon name="check" class="w-3.5 h-3.5 text-[#dfab3e]" />
+                <span>Evaluación sensorial según protocolo SCA</span>
+              </li>
+              <li class="flex items-center gap-1.5">
+                <Icon name="check" class="w-3.5 h-3.5 text-[#dfab3e]" />
+                <span>Asesoría técnica en beneficiado y secado</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-6">
+            <a
+              href="#contacto"
+              class="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#c99326] hover:bg-[#dfab3e] text-[#2b1810] font-bold text-sm transition-all duration-300 shadow-lg hover:-translate-y-0.5"
+            >
+              <span>Consultar Servicios</span>
+              <Icon name="arrow-right" class="w-4 h-4 text-[#2b1810]" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Premios & Reconocimientos -->
+  <section id="premios" class="py-24 sm:py-32 bg-[#f7f1eb] text-[#2b1810] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16 reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dfab3e]/20 text-[#936712] text-xs font-semibold uppercase tracking-wider">
+          <Icon name="award" class="w-3.5 h-3.5 text-[#936712]" />
+          <span>Aval Oficial & Certificaciones</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-serif font-bold tracking-tight">
+          Premios y <span class="text-[#c99326]">Reconocimientos</span>
+        </h2>
+        <p class="text-[#44261c]/80 text-base sm:text-lg leading-relaxed">
+          El respaldo de instituciones como el IHCAFE y la evaluación de paneles sensoriales expertos certifican la consistencia y excelencia de nuestro café.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {premios.map((premio, i) => (
+          <div class={`reveal delay-${(i + 1) * 100}`}>
+            <AwardBadge premio={premio} />
+          </div>
+        ))}
+
+        <!-- Diversificación / Chile Jalapeño Badge -->
+        <div class="reveal delay-200 bg-white p-6 sm:p-8 rounded-3xl border border-[#438265]/30 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#438265]/15 border border-[#438265]/40 flex items-center justify-center text-[#2d5a46]">
+              <Icon name="pepper" class="w-6 h-6 text-[#2d5a46]" />
+            </div>
+            <span class="px-3 py-1 rounded-full bg-[#438265]/20 text-[#2d5a46] font-bold text-xs tracking-wider">
+              Exportación
+            </span>
+          </div>
+          <div class="space-y-2">
+            <div class="text-xs font-bold uppercase tracking-widest text-[#2d5a46]">
+              Diversificación Agroindustrial
+            </div>
+            <h3 class="text-xl font-serif font-bold text-[#2b1810]">
+              Chile Jalapeño Premium
+            </h3>
+            <p class="text-sm text-[#44261c]/80 leading-relaxed">
+              Producción y exportación directa hacia los Estados Unidos, con planes para consolidar nuestra propia marca en el mercado nacional hondureño.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-[#2b1810]/10 text-xs text-[#438265] font-semibold flex items-center gap-1.5">
+            <Icon name="check" class="w-3.5 h-3.5 text-[#438265]" />
+            <span>Cumplimiento fitosanitario FDA</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. Eventos, Ferias & Bitácora -->
+  <section id="eventos" class="py-24 sm:py-32 bg-[#fbf8f5] text-[#2b1810]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16 reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#438265]/10 text-[#2d5a46] text-xs font-semibold uppercase tracking-wider">
+          <Icon name="calendar" class="w-3.5 h-3.5 text-[#2d5a46]" />
+          <span>Bitácora en Vivo</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-serif font-bold tracking-tight">
+          Eventos, Ferias & <span class="text-[#c99326]">Proyección Global</span>
+        </h2>
+        <p class="text-[#44261c]/80 text-base sm:text-lg leading-relaxed">
+          Nuestra presencia activa en exposiciones, demostraciones de métodos y foros internacionales de café especial.
+        </p>
+      </div>
+
+      <div class="reveal-scale">
+        <EventTimeline eventos={eventos} />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. Contacto B2B & Generación de Oportunidades -->
+  <section id="contacto" class="py-24 sm:py-32 bg-[#2b1810] text-white relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="reveal bg-gradient-to-br from-[#44261c] to-[#2b1810] rounded-3xl p-8 sm:p-12 lg:p-16 border border-[#dfab3e]/30 shadow-2xl">
+        <div class="max-w-2xl">
+          <span class="px-3.5 py-1.5 rounded-full bg-[#dfab3e]/15 border border-[#dfab3e]/30 text-[#dfab3e] text-xs font-semibold uppercase tracking-wider inline-block mb-4">
+            Alianzas Comerciales & Exportación
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
+            Llevemos el café de Teupasenti a tu mercado
+          </h2>
+          <p class="text-[#f7f1eb]/85 text-base sm:text-lg mb-8 leading-relaxed">
+            Si eres comprador internacional, tostador o distribuidor interesado en muestras de nuestro lote Parainema (86.7 IHCAFE) o servicios de tueste y maquila, contáctanos directamente.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-white/10">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+              <div class="text-xs uppercase text-[#dfab3e] font-bold tracking-wider mb-1 flex items-center gap-1.5">
+                <Icon name="map-pin" class="w-3.5 h-3.5 text-[#dfab3e]" />
+                <span>Sede Principal</span>
+              </div>
+              <div class="text-sm text-white font-medium">Barrio 1 de Mayo, Teupasenti, El Paraíso, Honduras</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+              <div class="text-xs uppercase text-[#dfab3e] font-bold tracking-wider mb-1 flex items-center gap-1.5">
+                <Icon name="mail" class="w-3.5 h-3.5 text-[#dfab3e]" />
+                <span>Contacto Directo</span>
+              </div>
+              <div class="text-sm text-white font-medium">contacto@tierraindia.hn</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

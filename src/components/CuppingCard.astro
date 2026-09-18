@@ -1,0 +1,103 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+
+interface Props {
+  cafe: CollectionEntry<'cafes'>;
+}
+
+const { cafe } = Astro.props;
+const { data } = cafe;
+---
+
+<article class="group bg-white rounded-3xl overflow-hidden border border-[#2b1810]/10 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col">
+  <!-- Image Header -->
+  <div class="relative h-72 sm:h-80 overflow-hidden bg-[#2b1810]">
+    <img
+      src={data.imagen}
+      alt={data.nombre}
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-[#2b1810] via-transparent to-black/20"></div>
+
+    <!-- Badges -->
+    <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+      {data.destacado && (
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#c99326] text-[#2b1810] font-bold text-xs tracking-wide shadow-md">
+          <Icon name="star" class="w-3.5 h-3.5 text-[#2b1810]" />
+          <span>Lote Insignia</span>
+        </span>
+      )}
+      <span class="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white font-medium text-xs">
+        {data.variedad}
+      </span>
+    </div>
+
+    <!-- IHCAFE Score Badge -->
+    <div class="absolute bottom-4 right-4 bg-[#2b1810]/95 backdrop-blur-md border border-[#dfab3e]/40 rounded-2xl p-3 text-center text-white shadow-xl">
+      <div class="text-[10px] uppercase font-bold tracking-widest text-[#dfab3e]">SCA / IHCAFE</div>
+      <div class="text-2xl sm:text-3xl font-serif font-extrabold text-[#dfab3e]">{data.puntajeIhcafe}</div>
+      <div class="text-[10px] text-[#f7f1eb]/80">Puntos de Taza</div>
+    </div>
+  </div>
+
+  <!-- Content & Technical Details -->
+  <div class="p-6 sm:p-8 flex-grow flex flex-col justify-between space-y-6">
+    
+    <div>
+      <div class="text-xs uppercase tracking-wider font-semibold text-[#438265] mb-1">
+        {data.zona} · {data.region}
+      </div>
+      <h3 class="text-2xl font-serif font-bold text-[#2b1810] group-hover:text-[#c99326] transition">
+        {data.nombre}
+      </h3>
+    </div>
+
+    <!-- Specs Grid -->
+    <div class="grid grid-cols-2 gap-3 py-3 border-y border-[#2b1810]/10 text-xs">
+      <div>
+        <span class="text-[#8b533e] font-medium block">Altitud:</span>
+        <span class="font-bold text-[#2b1810] text-sm">{data.altitudMsnm} msnm</span>
+      </div>
+      <div>
+        <span class="text-[#8b533e] font-medium block">Proceso:</span>
+        <span class="font-bold text-[#2b1810] text-sm">{data.proceso}</span>
+      </div>
+      <div>
+        <span class="text-[#8b533e] font-medium block">Tueste Recomendado:</span>
+        <span class="font-bold text-[#2b1810] text-sm">{data.tueste}</span>
+      </div>
+      <div>
+        <span class="text-[#8b533e] font-medium block">Producción:</span>
+        <span class="font-bold text-[#2b1810] text-sm">{data.productora}</span>
+      </div>
+    </div>
+
+    <!-- Cupping Notes -->
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-[#2b1810] mb-2 flex items-center gap-1.5">
+        <Icon name="coffee" class="w-3.5 h-3.5 text-[#c99326]" />
+        <span>Notas Sensoriales de Catación:</span>
+      </div>
+      <div class="flex flex-wrap gap-1.5">
+        {data.notasCata.map((nota) => (
+          <span class="px-2.5 py-1 rounded-lg bg-[#f7f1eb] border border-[#2b1810]/10 text-[#653b2a] font-medium text-xs">
+            {nota}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA Contact for Lot -->
+    <div class="pt-2">
+      <a
+        href={`/#contacto?lote=${encodeURIComponent(data.nombre)}`}
+        class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#2b1810] hover:bg-[#44261c] text-white font-medium text-sm transition shadow-md group-hover:border-[#dfab3e]/50"
+      >
+        <span>Solicitar Muestra / Ficha B2B</span>
+        <Icon name="arrow-right" class="w-4 h-4 text-[#dfab3e]" />
+      </a>
+    </div>
+
+  </div>
+</article>

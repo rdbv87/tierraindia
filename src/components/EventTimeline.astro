@@ -1,0 +1,87 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+
+interface Props {
+  eventos: CollectionEntry<'eventos'>[];
+}
+
+const { eventos } = Astro.props;
+const eventosOrdenados = [...eventos].sort(
+  (a, b) => new Date(b.data.fecha).getTime() - new Date(a.data.fecha).getTime()
+);
+---
+
+<div class="relative max-w-4xl mx-auto px-2 sm:px-0">
+  <!-- Center Vertical Line (Only on Desktop) -->
+  <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-0.5 bg-[#dfab3e]/30"></div>
+  <!-- Left Line (Only on Mobile) -->
+  <div class="md:hidden absolute left-4 sm:left-6 top-4 bottom-4 w-0.5 bg-[#dfab3e]/30"></div>
+
+  <div class="space-y-8 sm:space-y-12">
+    {eventosOrdenados.map((evento, index) => {
+      const isEven = index % 2 === 0;
+      return (
+        <div class="relative flex flex-col md:flex-row items-stretch md:items-center gap-4 sm:gap-6 pl-10 sm:pl-14 md:pl-0">
+          
+          <!-- Marker Dot Desktop -->
+          <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#dfab3e] border-4 border-[#2b1810] items-center justify-center z-10"></div>
+          <!-- Marker Dot Mobile -->
+          <div class="md:hidden absolute left-2 sm:left-4 top-6 w-5 h-5 rounded-full bg-[#dfab3e] border-4 border-[#2b1810] items-center justify-center z-10"></div>
+
+          <!-- Content Card -->
+          <div class={`w-full md:w-1/2 ${isEven ? 'md:pr-10 lg:pr-12 md:text-right' : 'md:pl-10 lg:pl-12 md:ml-auto'}`}>
+            <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 border border-[#2b1810]/10 shadow-lg hover:shadow-2xl transition-all duration-300">
+              
+              <div class="overflow-hidden rounded-xl sm:rounded-2xl mb-4 h-44 sm:h-52 bg-[#2b1810]">
+                <img
+                  src={evento.data.imagenPrincipal}
+                  alt={evento.data.titulo}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+
+              <div class={`flex flex-wrap items-center gap-2 mb-2 ${isEven ? 'md:justify-end' : ''}`}>
+                <span class="px-2.5 py-0.5 rounded-full bg-[#438265]/15 text-[#2d5a46] text-xs font-semibold uppercase tracking-wider">
+                  {evento.data.tipo}
+                </span>
+                <span class="text-xs text-[#8b533e] font-medium flex items-center gap-1">
+                  <Icon name="calendar" class="w-3.5 h-3.5 text-[#8b533e]" />
+                  <span>{evento.data.fecha}</span>
+                </span>
+              </div>
+
+              <h3 class="text-lg sm:text-xl font-serif font-bold text-[#2b1810] mb-1 leading-snug">
+                {evento.data.titulo}
+              </h3>
+
+              <div class={`text-xs text-[#c99326] font-semibold mb-3 flex items-center gap-1 ${isEven ? 'md:justify-end' : ''}`}>
+                <Icon name="map-pin" class="w-3.5 h-3.5 text-[#c99326] shrink-0" />
+                <span>{evento.data.ubicacion}</span>
+              </div>
+
+              <p class="text-xs sm:text-sm text-[#44261c]/80 leading-relaxed text-left">
+                {evento.data.resumen}
+              </p>
+
+              <!-- Gallery Mini Previews -->
+              {evento.data.galeria && evento.data.galeria.length > 0 && (
+                <div class={`pt-4 mt-4 border-t border-[#2b1810]/10 flex gap-2 overflow-x-auto pb-1 ${isEven ? 'md:justify-end' : ''}`}>
+                  {evento.data.galeria.map((img) => (
+                    <img
+                      src={img}
+                      alt="Miniatura galería"
+                      class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover border border-[#2b1810]/10 shrink-0"
+                    />
+                  ))}
+                </div>
+              )}
+
+            </div>
+          </div>
+
+        </div>
+      );
+    })}
+  </div>
+</div>

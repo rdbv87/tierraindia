@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tierra-900: #2b1810;
+  --color-tierra-800: #44261c;
+  --color-tierra-700: #653b2a;
+  --color-tierra-600: #8b533e;
+  --color-tierra-500: #b47255;
+  --color-tierra-100: #f7f1eb;
+  --color-tierra-50: #fbf8f5;
+
+  --color-dorado-900: #573c08;
+  --color-dorado-700: #936712;
+  --color-dorado-500: #c99326;
+  --color-dorado-400: #dfab3e;
+  --color-dorado-100: #fef7e7;
+
+  --color-verde-900: #1b382b;
+  --color-verde-700: #2d5a46;
+  --color-verde-500: #438265;
+  --color-verde-100: #edf6f1;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+/* Base smoothing & typography */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-tierra-50);
+  color: var(--color-tierra-900);
+  overflow-x: hidden;
+}
+
+/* Premium Scroll Reveal Animation Classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active,
+.reveal-scale.active {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Stagger Delay Utilities */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Subtle Gold Glow & Hover Micro-interactions */
+.glow-on-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glow-on-hover:hover {
+  box-shadow: 0 12px 30px -10px rgba(201, 147, 38, 0.35);
+  transform: translateY(-4px);
+}
+
+/* Subtle Shimmer for High-Value Badges */
+@keyframes goldShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.badge-shimmer {
+  background: linear-gradient(90deg, rgba(223, 171, 62, 0.15) 0%, rgba(223, 171, 62, 0.35) 50%, rgba(223, 171, 62, 0.15) 100%);
+  background-size: 200% 100%;
+  animation: goldShimmer 6s infinite linear;
+}
+
+/* Custom Scrollbar for Luxury Aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #2b1810;
+}
+::-webkit-scrollbar-thumb {
+  background: #c99326;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #dfab3e;
+}

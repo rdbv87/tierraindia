@@ -1,0 +1,25 @@
+---
+interface Props {
+  class?: string;
+  size?: number | string;
+}
+
+const { class: className = "w-6 h-6", size } = Astro.props;
+const dimensionStyle = size ? `width: ${size}px; height: ${size}px;` : "";
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.8"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  style={dimensionStyle}
+>
+  <!-- Silueta de grano de café estilizado -->
+  <path d="M12 2C6.5 2 3 6.5 3 12s3.5 10 9 10 9-4.5 9-10-3.5-10-9-10z" fill="currentColor" fill-opacity="0.15" />
+  <path d="M12 4.5c-2 3.5 2 6.5 0 9.5s2 6 0 6.5" stroke="currentColor" stroke-width="1.8" />
+</svg>

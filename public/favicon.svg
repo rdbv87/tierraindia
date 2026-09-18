@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="beanGrad" x1="15%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#dfab3e" />
+      <stop offset="60%" stop-color="#c99326" />
+      <stop offset="100%" stop-color="#8b533e" />
+    </linearGradient>
+  </defs>
+
+  <!-- Silueta limpia del Grano de Café puro (sin fondos cuadrados) -->
+  <!-- Mitad / Cuerpo principal del grano -->
+  <path
+    d="M32 4 C16 4 6 18 6 34 C6 50 18 60 32 60 C46 60 58 50 58 34 C58 18 48 4 32 4 Z"
+    fill="url(#beanGrad)"
+  />
+
+  <!-- Hendidura característica central en S profunda -->
+  <path
+    d="M32 7 C26 18 38 27 32 37 C26 47 38 53 32 57"
+    stroke="#2b1810"
+    stroke-width="4.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Brillo de resalte superior/lateral -->
+  <path
+    d="M16 22 C14 28 15 40 20 48"
+    stroke="#ffffff"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    opacity="0.35"
+  />
+</svg>

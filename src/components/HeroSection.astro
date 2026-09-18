@@ -1,0 +1,96 @@
+---
+interface Props {
+  titulo: string;
+  subtitulo: string;
+  badge?: string;
+  ctaPrimario?: {
+    texto: string;
+    url: string;
+  };
+  ctaSecundario?: {
+    texto: string;
+    url: string;
+  };
+}
+
+const {
+  titulo,
+  subtitulo,
+  badge = "Teupasenti, El Paraíso · Honduras",
+  ctaPrimario = { texto: "Explorar Café de Especialidad", url: "#cataduria" },
+  ctaSecundario = { texto: "Nuestra Historia", url: "#origen" }
+} = Astro.props;
+---
+
+<section class="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center bg-[#2b1810] text-[#fbf8f5] px-4 sm:px-6 lg:px-8 py-20 overflow-hidden">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/images/varias-01.jpg"
+      alt="Café de Especialidad Tierra India en grano"
+      class="w-full h-full object-cover object-center scale-105 filter brightness-[0.35] contrast-110"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-[#2b1810] via-[#2b1810]/70 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#1b382b]/60 via-[#2b1810]/40 to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 max-w-5xl mx-auto text-center space-y-8">
+    
+    <!-- Location Badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dfab3e]/15 border border-[#dfab3e]/30 text-[#dfab3e] text-xs sm:text-sm font-medium tracking-wide shadow-xs backdrop-blur-md">
+      <span class="w-2 h-2 rounded-full bg-[#dfab3e] animate-pulse"></span>
+      {badge}
+    </div>
+
+    <!-- Main Headings -->
+    <div class="space-y-4">
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-white leading-[1.15]" set:html={titulo}>
+      </h1>
+
+      <p class="text-base sm:text-xl text-[#f7f1eb]/90 max-w-3xl mx-auto font-light leading-relaxed">
+        {subtitulo}
+      </p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="pt-2 flex flex-col sm:flex-row justify-center items-center gap-4">
+      {ctaPrimario && (
+        <a
+          href={ctaPrimario.url}
+          class="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#c99326] hover:bg-[#dfab3e] text-[#2b1810] font-semibold text-base transition duration-300 shadow-xl shadow-[#c99326]/25 hover:-translate-y-0.5"
+        >
+          {ctaPrimario.texto}
+        </a>
+      )}
+      {ctaSecundario && (
+        <a
+          href={ctaSecundario.url}
+          class="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/25 hover:border-white/50 bg-white/5 hover:bg-white/10 text-white font-medium text-base transition backdrop-blur-md hover:-translate-y-0.5"
+        >
+          {ctaSecundario.texto}
+        </a>
+      )}
+    </div>
+
+    <!-- Highlights Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-10 border-t border-white/15 max-w-4xl mx-auto">
+      <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+        <div class="text-2xl sm:text-3xl font-serif font-bold text-[#dfab3e]">86.7</div>
+        <div class="text-xs sm:text-sm text-[#f7f1eb]/75 mt-1 font-medium">Puntaje IHCAFE</div>
+      </div>
+      <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+        <div class="text-2xl sm:text-3xl font-serif font-bold text-[#dfab3e]">1,500m</div>
+        <div class="text-xs sm:text-sm text-[#f7f1eb]/75 mt-1 font-medium">Altitud</div>
+      </div>
+      <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+        <div class="text-2xl sm:text-3xl font-serif font-bold text-[#438265]">100%</div>
+        <div class="text-xs sm:text-sm text-[#f7f1eb]/75 mt-1 font-medium">Liderazgo Femenino</div>
+      </div>
+      <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+        <div class="text-2xl sm:text-3xl font-serif font-bold text-[#dfab3e]">EUDR</div>
+        <div class="text-xs sm:text-sm text-[#f7f1eb]/75 mt-1 font-medium">Cero Deforestación UE</div>
+      </div>
+    </div>
+
+  </div>
+</section>
