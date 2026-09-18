@@ -20,13 +20,15 @@ const {
   ctaPrimario = { texto: "Explorar Café de Especialidad", url: "#cataduria" },
   ctaSecundario = { texto: "Nuestra Historia", url: "#origen" }
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <section class="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center bg-tierra-900 text-tierra-50 px-4 sm:px-6 lg:px-8 py-20 overflow-hidden">
   <!-- Background Image with Overlay -->
   <div class="absolute inset-0 z-0">
     <img
-      src="/images/varias-01.jpg"
+      src={`${base}/images/varias-01.jpg`}
       alt="Café de Especialidad Tierra India en grano"
       class="w-full h-full object-cover object-center scale-105 filter brightness-[0.35] contrast-110"
     />

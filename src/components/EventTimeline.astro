@@ -7,6 +7,9 @@ interface Props {
 }
 
 const { eventos } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const getImgSrc = (src: string) => src.startsWith('http') ? src : `${base}${src.startsWith('/') ? '' : '/'}${src}`;
+
 const eventosOrdenados = [...eventos].sort(
   (a, b) => new Date(b.data.fecha).getTime() - new Date(a.data.fecha).getTime()
 );
@@ -35,7 +38,7 @@ const eventosOrdenados = [...eventos].sort(
               
               <div class="overflow-hidden rounded-xl sm:rounded-2xl mb-4 h-44 sm:h-52 bg-tierra-900">
                 <img
-                  src={evento.data.imagenPrincipal}
+                  src={getImgSrc(evento.data.imagenPrincipal)}
                   alt={evento.data.titulo}
                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -69,7 +72,7 @@ const eventosOrdenados = [...eventos].sort(
                 <div class={`pt-4 mt-4 border-t border-tierra-900/10 flex gap-2 overflow-x-auto pb-1 ${isEven ? 'md:justify-end' : ''}`}>
                   {evento.data.galeria.map((img) => (
                     <img
-                      src={img}
+                      src={getImgSrc(img)}
                       alt="Miniatura galería"
                       class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover border border-tierra-900/10 shrink-0"
                     />
